@@ -1,0 +1,13 @@
+{
+  "name": "typechain",
+  "version": "1.0.0",
+  "description": "Learning Typescript by making a Blockchain with it(I appreciate Nicolás)",
+  "main": "index.js",
+  "repository": "https://github.com/qvil-playground/typechain.git",
+  "author": "qvil <qvil1127@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "prestart": "tsc"
+  }
+}
