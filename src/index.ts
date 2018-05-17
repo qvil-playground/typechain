@@ -37,9 +37,7 @@ class Block {
   }
 }
 
-Block.calculateBlockHash;
-
-const genesisBlock: Block = new Block(0, "9u233", "", "Hello", 123123123);
+const genesisBlock: Block = new Block(0, "9u233", "", "First Block", 123123123);
 
 let blockchain: Block[] = [genesisBlock];
 
@@ -78,17 +76,16 @@ const getHashforBlock = (aBlock: Block): string =>
     aBlock.data
   );
 const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
-  if (!Block.validateStructure(candidateBlock)) {
+  if (
+    !Block.validateStructure(candidateBlock) &&
+    previousBlock.index + 1 !== candidateBlock.index &&
+    previousBlock.hash !== candidateBlock.previousHash &&
+    getHashforBlock(candidateBlock) !== candidateBlock.hash
+  ) {
     return false;
-  } else if (previousBlock.index + 1 !== candidateBlock.index) {
-    return false;
-  } else if (previousBlock.hash !== candidateBlock.previousHash) {
-    return false;
-  } else if (getHashforBlock(candidateBlock) !== candidateBlock.hash) {
-    return false;
-  } else {
-    return true;
   }
+
+  return true;
 };
 
 const addBlock = (candidateBlock: Block): void => {
